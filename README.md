@@ -58,16 +58,14 @@ The application is a **simple login form** (`index.html`, `style.css`, `form.php
 ### 3️⃣ Launch EC2 Instances
 - Install **Apache**, **PHP**, and **MySQL client**:
   ```bash
- # 1. Update the system package list
-sudo apt update -y
-sudo apt upgrade -y
+   sudo apt update -y
+   sudo apt upgrade -y
 
-# 2. Install NGINX, PHP, and MySQL PHP Extension
-sudo apt install -y nginx php php-mysql
 
-# 3. Start and enable NGINX to run on boot
-sudo systemctl start nginx
-sudo systemctl enable nginx
+   sudo apt install -y nginx php php-mysql
+
+   sudo systemctl start nginx
+   sudo systemctl enable nginx
 
 # 4. (Optional) Install MySQL client to interact with RDS databases
 sudo apt install -y mysql-client
