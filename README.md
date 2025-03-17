@@ -65,15 +65,32 @@ The application is a **simple login form** (`index.html`, `style.css`, `form.php
 
 Deploy your index.html, style.css, and form.php files to /var/www/html/.
 Update form.php with your RDS database credentials.
+
 4️⃣ Create Application Load Balancer (ALB)
 Configure the ALB to listen on port 80.
 Create a Target Group and register your EC2 instances.
 Use the ALB DNS to access the application.
+
 5️⃣ Configure Auto Scaling Group (ASG)
 Define min, desired, and max capacity.
 Attach the ALB Target Group.
 Set scaling policies based on CPU Utilization (monitored via CloudWatch).
+
 6️⃣ Set Up CloudWatch Alarms & SNS
 Create CloudWatch Alarms for CPU utilization thresholds (e.g., >70%).
 Create an SNS Topic and subscribe your email for notifications.
 Link alarms to trigger ASG scaling actions and send SNS notifications.
+
+📧 Notifications (SNS)
+Subscribe to the SNS Topic to receive alerts when:
+CPU utilization crosses thresholds.
+Auto Scaling events (scale-in or scale-out) occur.
+You will receive email alerts keeping you informed of infrastructure scaling and health.
+
+🎉 Result
+✅ Users can submit their login data through the form.
+✅ Data is securely stored in Amazon RDS.
+✅ The system automatically scales in or out based on traffic and CPU load.
+✅ SNS Notifications inform you of important scaling events.
+✅ Achieves high availability, fault tolerance, and cost optimization.
+
