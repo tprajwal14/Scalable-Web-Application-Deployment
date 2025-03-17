@@ -22,4 +22,44 @@ The application is a **simple login form** (`index.html`, `style.css`, `form.php
 ---
 
 ## 📁 Project Structure
+📂 project-directory ┣ 📄 index.html - Login form frontend ┣ 📄 style.css - Styling for the login form ┗ 📄 form.php - Backend PHP script to store form data in RDS
+
+
+### ✅ How It Works
+
+1. **User Access**  
+   The user accesses the application via the **ALB DNS name**.
+
+2. **Form Submission**  
+   The user submits the **login form** (`index.html`).  
+   `form.php` processes the data and inserts it into **Amazon RDS MySQL**.
+
+3. **Auto Scaling**  
+   When **CPU utilization increases** (simulated using stress tools),  
+   **CloudWatch Alarms** are triggered, and **ASG launches additional EC2 instances**.  
+   These new instances automatically register with the **ALB** and start serving traffic.
+
+4. **Notifications**  
+   **SNS** sends email notifications when scaling events or CloudWatch alarms occur.
+
+---
+
+## 🏗️ Deployment Steps
+
+### 1️⃣ Launch RDS (MySQL)
+- Launch an **RDS MySQL** instance.
+- Configure **Security Groups** to allow access from EC2 instances.
+- Note down the **Endpoint**, **Username**, and **Password** for database connectivity.
+
+### 2️⃣ Create IAM Role
+- Create an **IAM Role** for EC2 instances to access **CloudWatch** and **RDS** securely.
+- Attach the IAM role to your **EC2 instances**.
+
+### 3️⃣ Launch EC2 Instances
+- Install **Apache**, **PHP**, and **MySQL client**:
+  ```bash
+  sudo yum update -y
+  sudo yum install -y httpd php php-mysqlnd
+  sudo systemctl start httpd
+  sudo systemctl enable httpd
 
