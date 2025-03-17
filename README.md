@@ -58,10 +58,23 @@ The application is a **simple login form** (`index.html`, `style.css`, `form.php
 ### 3️⃣ Launch EC2 Instances
 - Install **Apache**, **PHP**, and **MySQL client**:
   ```bash
-  sudo yum update -y
-  sudo apt install -y nginx php php-mysqlnd
-  sudo systemctl start nginx
-  sudo systemctl enable nginx
+ # 1. Update the system package list
+sudo apt update -y
+sudo apt upgrade -y
+
+# 2. Install NGINX, PHP, and MySQL PHP Extension
+sudo apt install -y nginx php php-mysql
+
+# 3. Start and enable NGINX to run on boot
+sudo systemctl start nginx
+sudo systemctl enable nginx
+
+# 4. (Optional) Install MySQL client to interact with RDS databases
+sudo apt install -y mysql-client
+
+# 5. (Optional) Verify NGINX is running
+sudo systemctl status nginx
+
 
 Deploy your index.html, style.css, and form.php files to /var/www/html/.
 Update form.php with your RDS database credentials.
@@ -89,8 +102,13 @@ You will receive email alerts keeping you informed of infrastructure scaling and
 
 🎉 Result
 ✅ Users can submit their login data through the form.
+
 ✅ Data is securely stored in Amazon RDS.
+
 ✅ The system automatically scales in or out based on traffic and CPU load.
+
 ✅ SNS Notifications inform you of important scaling events.
+
 ✅ Achieves high availability, fault tolerance, and cost optimization.
+
 
