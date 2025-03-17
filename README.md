@@ -67,10 +67,10 @@ The application is a **simple login form** (`index.html`, `style.css`, `form.php
    sudo systemctl start nginx
    sudo systemctl enable nginx
 
-# 4. (Optional) Install MySQL client to interact with RDS databases
+   Install MySQL client to interact with RDS databases
 sudo apt install -y mysql-client
 
-# 5. (Optional) Verify NGINX is running
+   Verify NGINX is running
 sudo systemctl status nginx
 
 
